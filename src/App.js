@@ -2,78 +2,48 @@ import React, { useState } from "react";
 
 export default function App() {
   const [position, setPosition] = useState("");
-  const [sessions, setSessions] = useState(3);
 
-  const getTrainingPlan = () => {
-    if (!position) return [];
-
-    const plans = {
-      Defender: [
-        "1v1 defending drills",
-        "Sprint & recovery runs",
-        "Crossing after overlap",
-        "Positioning & line control"
-      ],
-      Midfielder: [
-        "Ball mastery",
-        "Endurance runs",
-        "Passing & scanning",
-        "Turn & play drills"
-      ],
-      Forward: [
-        "Finishing drills",
-        "Explosive sprints",
-        "First touch shooting",
-        "Movement in the box"
-      ],
-      Goalkeeper: [
-        "Reflex saves",
-        "Footwork & positioning",
-        "Distribution",
-        "Reaction drills"
-      ]
-    };
-
-    return plans[position].slice(0, sessions);
-  };
-
-  return (
-    <div style={{ padding: 20, fontFamily: "Arial", maxWidth: 450 }}>
-      <h1>⚽ Smart Football Training</h1>
-
-      <label>Position</label><br />
-      <select value={position} onChange={e => setPosition(e.target.value)}>
-        <option value="">Select</option>
-        <option>Defender</option>
-        <option>Midfielder</option>
-        <option>Forward</option>
-        <option>Goalkeeper</option>
-      </select>
-
-      <br /><br />
-
-      <label>Extra training sessions per week</label><br />
-      <input
-        type="number"
-        min="1"
-        max="6"
-        value={sessions}
-        onChange={e => setSessions(e.target.value)}
-      />
-
-      <h3>📋 Your Extra Training Plan</h3>
-
-      <ul>
-        {getTrainingPlan().map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-
-      {position && (
-        <p style={{ fontSize: 12, opacity: 0.7 }}>
-          Plan adjusted for a {position} training {sessions} extra times per week.
-        </p>
-      )}
-    </div>
-  );
-}
+  const trainingVideos = {
+    Defender: [
+      {
+        name: "1v1 Defending",
+        url: "https://www.youtube.com/watch?v=9JrjJ0e8P6g"
+      },
+      {
+        name: "Defensive Positioning",
+        url: "https://www.youtube.com/watch?v=2kZzFZy5H1g"
+      },
+      {
+        name: "Crossing After Overlap",
+        url: "https://www.youtube.com/watch?v=J0t4kX9nF4M"
+      }
+    ],
+    Midfielder: [
+      {
+        name: "Ball Mastery",
+        url: "https://www.youtube.com/watch?v=1F9c9jY6k8E"
+      },
+      {
+        name: "Scanning & Passing",
+        url: "https://www.youtube.com/watch?v=7mKXc4XzZ9g"
+      },
+      {
+        name: "Endurance Training",
+        url: "https://www.youtube.com/watch?v=QmZ5bKc7R6A"
+      }
+    ],
+    Forward: [
+      {
+        name: "Finishing Drills",
+        url: "https://www.youtube.com/watch?v=8p7mJcX8L5A"
+      },
+      {
+        name: "Explosive Sprints",
+        url: "https://www.youtube.com/watch?v=5n9F3kZxK1M"
+      },
+      {
+        name: "Movement in the Box",
+        url: "https://www.youtube.com/watch?v=R4nK2cZ5Z9E"
+      }
+    ],
+    Goa
