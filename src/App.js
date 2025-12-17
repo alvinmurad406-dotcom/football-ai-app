@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 
 export default function App() {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
-  const [position, setPosition] = useState("");
+  const [height, setHeight] = useState("");
   const [sessions, setSessions] = useState(3);
-  const [goal, setGoal] = useState("");
+  const [position, setPosition] = useState("");
+
+  // Enkel smart kost-logik
+  const calories =
+    weight === ""
+      ? 0
+      : weight > 80
+      ? 2200
+      : weight > 65
+      ? 2600
+      : 3000;
+
+  const protein =
+    weight === ""
+      ? 0
+      : Math.round(weight * 2);
 
   return (
-    <div style={{ padding: 20, fontFamily: "Arial", maxWidth: 400 }}>
-      <h1>⚽ My Football Profile</h1>
-
-      <label>Name</label><br />
-      <input value={name} onChange={e => setName(e.target.value)} /><br /><br />
-
-      <label>Age</label><br />
-      <input type="number" value={age} onChange={e => setAge(e.target.value)} /><br /><br />
+    <div style={{ padding: 20, fontFamily: "Arial", maxWidth: 420 }}>
+      <h1>⚽ Football Nutrition</h1>
 
       <label>Height (cm)</label><br />
       <input type="number" value={height} onChange={e => setHeight(e.target.value)} /><br /><br />
@@ -41,17 +47,22 @@ export default function App() {
         onChange={e => setSessions(e.target.value)}
       /><br /><br />
 
-      <label>Personal goal</label><br />
-      <input value={goal} onChange={e => setGoal(e.target.value)} /><br /><br />
+      <h3>🥗 Your Daily Nutrition</h3>
 
-      <h3>📊 Your Profile</h3>
-      <p><b>Name:</b> {name}</p>
-      <p><b>Age:</b> {age}</p>
-      <p><b>Height:</b> {height} cm</p>
-      <p><b>Weight:</b> {weight} kg</p>
-      <p><b>Position:</b> {position}</p>
-      <p><b>Trainings/week:</b> {sessions}</p>
-      <p><b>Goal:</b> {goal}</p>
+      {weight && (
+        <>
+          <p>🔥 <b>Calories:</b> {calories} kcal/day</p>
+          <p>💪 <b>Protein:</b> {protein} g/day</p>
+
+          <h4>🍽 Example meals</h4>
+          <ul>
+            <li>Breakfast: Oats + milk + banana</li>
+            <li>Lunch: Chicken, rice, vegetables</li>
+            <li>Dinner: Eggs or fish + potatoes</li>
+            <li>Snack: Yogurt or protein sandwich</li>
+          </ul>
+        </>
+      )}
     </div>
   );
 }
