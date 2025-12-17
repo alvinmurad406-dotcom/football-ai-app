@@ -12,10 +12,6 @@ export default function App() {
       {
         name: "Defensive Positioning",
         url: "https://www.youtube.com/watch?v=2kZzFZy5H1g"
-      },
-      {
-        name: "Crossing After Overlap",
-        url: "https://www.youtube.com/watch?v=J0t4kX9nF4M"
       }
     ],
     Midfielder: [
@@ -26,10 +22,6 @@ export default function App() {
       {
         name: "Scanning & Passing",
         url: "https://www.youtube.com/watch?v=7mKXc4XzZ9g"
-      },
-      {
-        name: "Endurance Training",
-        url: "https://www.youtube.com/watch?v=QmZ5bKc7R6A"
       }
     ],
     Forward: [
@@ -38,12 +30,56 @@ export default function App() {
         url: "https://www.youtube.com/watch?v=8p7mJcX8L5A"
       },
       {
-        name: "Explosive Sprints",
-        url: "https://www.youtube.com/watch?v=5n9F3kZxK1M"
-      },
-      {
         name: "Movement in the Box",
         url: "https://www.youtube.com/watch?v=R4nK2cZ5Z9E"
       }
     ],
-    Goa
+    Goalkeeper: [
+      {
+        name: "Reaction Saves",
+        url: "https://www.youtube.com/watch?v=3Zk8J5mKc9M"
+      },
+      {
+        name: "Footwork Drills",
+        url: "https://www.youtube.com/watch?v=7K9cZ1M8F5A"
+      }
+    ]
+  };
+
+  return (
+    <div style={{ padding: 20, fontFamily: "Arial", maxWidth: 500 }}>
+      <h1>🎥 Football Training Videos</h1>
+
+      <label>Choose your position</label>
+      <br />
+      <select
+        value={position}
+        onChange={(e) => setPosition(e.target.value)}
+      >
+        <option value="">Select</option>
+        <option>Defender</option>
+        <option>Midfielder</option>
+        <option>Forward</option>
+        <option>Goalkeeper</option>
+      </select>
+
+      <br />
+      <br />
+
+      {position && (
+        <div>
+          <h3>{position} Training</h3>
+          <ul>
+            {trainingVideos[position].map((item, index) => (
+              <li key={index}>
+                <a href={item.url} target="_blank" rel="noreferrer">
+                  ▶️ {item.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
